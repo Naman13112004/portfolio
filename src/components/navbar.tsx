@@ -5,9 +5,16 @@ import ThemeToggle from "./theme-toggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = ['About', 'Projects', 'Skills', 'Learning'];
+  const navItems = ['About', 'Projects', 'Skills', 'Learning', 'Resume'];
 
   const scrollToSection = (id: string) => {
+    if(id === "resume") {
+      window.open(
+        "https://drive.google.com/file/d/1pO6sDaibejVooqZxyiVVi2PEnDn06R8R/view?usp=sharing",
+        "_blank",
+      );
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -25,6 +32,9 @@ const Navbar = () => {
 
       case "Learning":
         return "learning";
+
+      case "Resume":
+        return "resume";
 
       default:
         return item.toLowerCase();
@@ -75,7 +85,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <button
               key={item}
-              onClick={() => scrollToSection(item.toLowerCase())}
+              onClick={() => scrollToSection(decideSectionId(item))}
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
             >
               {item}
