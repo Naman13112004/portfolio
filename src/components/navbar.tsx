@@ -10,7 +10,7 @@ const Navbar = () => {
   const scrollToSection = (id: string) => {
     if(id === "resume") {
       window.open(
-        "https://drive.google.com/file/d/1pO6sDaibejVooqZxyiVVi2PEnDn06R8R/view?usp=sharing",
+        "/assets/Naman Jain Resume.pdf",
         "_blank",
       );
     }
@@ -57,7 +57,7 @@ const Navbar = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(decideSectionId(item))}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
                 >
                   {item}
                 </button>

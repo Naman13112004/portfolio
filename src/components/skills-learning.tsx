@@ -5,18 +5,42 @@ import { Cloud, Code2, Database, Terminal } from 'lucide-react';
 const SkillCard = ({ title, skills, icon, color }: { title: string, skills: string[], icon: any, color: string }) => (
   <motion.div
     whileHover={{ y: -5 }}
-    className={`bg-white dark:bg-gray-900 p-6 rounded-xl border-t-4 ${color} shadow-lg`}
+    className={`bg-white dark:bg-gray-900 p-8 rounded-2xl border-t-4 ${color} shadow-xl flex flex-col h-full`}
   >
-    <div className="flex items-center gap-3 mb-6">
-      {icon}
-      <h3 className="font-bold text-xl dark:text-white">{title}</h3>
+    <div className="flex items-center gap-3 mb-8">
+      <div className={`p-2 rounded-lg bg-gray-50 dark:bg-gray-800`}>
+        {icon}
+      </div>
+      <h3 className="font-bold text-xl dark:text-white tracking-tight">{title}</h3>
     </div>
-    <div className="flex flex-wrap gap-2">
-      {skills.map(skill => (
-        <span key={skill} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md text-sm">
-          {skill}
-        </span>
-      ))}
+
+    {/* Using a grid instead of flex-wrap for a cleaner "table" look */}
+    <div className="grid grid-cols-1 gap-4">
+      {skills.map(skill => {
+        // Splitting the skill from its description (the part in parentheses)
+        const [main, detail] = skill.split(' (');
+        return (
+          <div key={skill} className="group">
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-blue-500 transition-colors">
+                {main}
+              </span>
+              {detail && (
+                <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight">
+                  {detail.replace(')', '')}
+                </span>
+              )}
+            </div>
+            <div className="mt-2 h-1 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                {/* Visual indicator of "Expertise" level based on the card type */}
+                <div className={`h-full ${
+                    title.includes('Expert') ? 'w-full bg-green-500' : 
+                    title.includes('Intermediate') ? 'w-2/3 bg-blue-500' : 'w-1/3 bg-purple-500'
+                } opacity-60`} />
+            </div>
+          </div>
+        );
+      })}
     </div>
   </motion.div>
 );
