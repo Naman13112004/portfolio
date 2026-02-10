@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolio';
+import { NavLink } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -27,7 +28,7 @@ const Hero = () => {
           <p className="text-gray-500 dark:text-gray-400 mb-10 max-w-xl mx-auto leading-relaxed">
             {portfolioData.personalInfo.bio}
           </p>
-          
+
           <div className="flex justify-center gap-6 mb-12">
             {portfolioData.socials.map((social) => (
               <a
@@ -42,12 +43,15 @@ const Hero = () => {
             ))}
           </div>
 
-          <button 
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-all shadow-lg hover:shadow-blue-500/25 animate-bounce cursor-pointer"
+          <NavLink
+            to="/projects"
           >
-            View My Work
-          </button>
+            <button
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-all shadow-lg hover:shadow-blue-500/25 animate-bounce cursor-pointer"
+            >
+              View My Work
+            </button>
+          </NavLink>
         </motion.div>
       </div>
     </section>
