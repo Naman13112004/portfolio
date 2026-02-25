@@ -6,8 +6,8 @@ const Hero = () => {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-16 bg-gray-50 dark:bg-black relative overflow-hidden">
       {/* Background Decor */}
-      {/* <div className="absolute top-20 right-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" /> */}
+      <div className="absolute top-20 right-20 w-72 h-72 bg-blue-500/25 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-72 h-72 bg-purple-500/25 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <motion.div

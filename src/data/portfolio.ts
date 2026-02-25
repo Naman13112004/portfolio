@@ -116,7 +116,7 @@ export const portfolioData = {
       ],
       github: "https://github.com/Naman13112004/meetai",
       live: "https://meetai-rosy.vercel.app/",
-      image: "/meetai.png",
+      image: "/projects/meetai.png",
       longDesc: "Designed to explore the intersection of real-time communication and AI-assisted collaboration. Features include secure auth, room management, and live transcription."
     },
     {
@@ -133,7 +133,7 @@ export const portfolioData = {
       ],
       github: "https://github.com/Naman13112004/welth",
       live: "https://welth-ashen-one.vercel.app/",
-      image: "/welth.png",
+      image: "/projects/welth.png",
       longDesc: "Emphasizes clean data modeling, secure authentication, and actionable financial summaries with charts and AI analysis."
     },
     {
@@ -151,7 +151,7 @@ export const portfolioData = {
       ],
       github: "https://github.com/Naman13112004/ai-merch-stylist",
       live: "https://merch-ai-restyler.vercel.app/",
-      image: "/merchai.png",
+      image: "/projects/merchai.png",
       longDesc: "Combines computer vision and image generation to help e-commerce brands create professional product imagery instantly."
     },
     {
@@ -170,7 +170,7 @@ export const portfolioData = {
       ],
       github: "https://github.com/Naman13112004/planly",
       live: "https://planly-three.vercel.app/",
-      image: "/planly.png",
+      image: "/projects/planly.png",
       longDesc: "Features a dynamic form engine where fields adapt based on the selected hiring category (Planner, Performer, Crew)."
     },
     {
@@ -185,7 +185,7 @@ export const portfolioData = {
       ],
       github: "https://github.com/Naman13112004/cli-flow",
       live: "https://github.com/Naman13112004/cli-flow/releases",
-      image: "/cliflow.png",
+      image: "/projects/cliflow.png",
       longDesc: "Designed with zero dependencies, high performance, and compatibility with older compilers."
     }
   ]
