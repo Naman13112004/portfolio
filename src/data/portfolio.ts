@@ -105,6 +105,50 @@ export const portfolioData = {
 
   projects: [
     {
+      title: "Snap Attend - AI Attendance System",
+      desc: "An open-source face-recognition attendance system built to explore real-world AI deployment beyond simple prototypes.",
+      tech: [
+        "Next.js",
+        "Node.js",
+        "FastAPI",
+        "Computer Vision",
+        "Microservices"
+      ],
+      github: "https://github.com/Naman13112004/picture-based-attendance",
+      live: "https://snap-attend.vercel.app/",
+      image: "/projects/snapattend.png",
+      longDesc: "Features a polyglot backend separating application logic from ML inference workloads, tackling challenges around image processing latency and service orchestration."
+    },
+    {
+      title: "RBAC Backend System",
+      desc: "A secure, high-performance backend system built from scratch, focusing on authorization, reliability, and security. Implements robust Role-Based Access Control and JWT authentication.",
+      tech: [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Redis",
+        "System Design"
+      ],
+      github: "https://github.com/Naman13112004/backend-rbac-task",
+      live: "https://backend-rbac-task.vercel.app/",
+      image: "/projects/rbac.png", // Make sure to add this image to your public folder
+      longDesc: "Reduced API latency from ~2s to ~600ms using Redis caching and query optimization. Designed rate-limiting and security middleware to ensure stability under load simulations."
+    },
+    {
+      title: "Federated Learning System",
+      desc: "A decentralized machine learning pipeline enabling privacy-preserving AI training on non-IID client data without sharing raw medical images.",
+      tech: [
+        "Python",
+        "Distributed ML",
+        "Federated Learning",
+        "Deep Learning"
+      ],
+      github: "https://github.com/Naman13112004/Lung-Tumor-FL",
+      live: "", 
+      image: "/projects/federated.png",
+      longDesc: "Trained MobileNetV2 on ~15K medical images achieving 98.93% accuracy. Explored performance vs. privacy trade-offs, with research under paper submission."
+    },
+    {
       title: "MeetAI - AI Agent Video Call",
       desc: "A real-time video calling web application focused on intelligent meetings. Supports secure authentication, scheduled meetings, live video rooms, call recordings, AI-generated transcripts and summaries, and conversational agents.",
       tech: [
@@ -137,43 +181,6 @@ export const portfolioData = {
       longDesc: "Emphasizes clean data modeling, secure authentication, and actionable financial summaries with charts and AI analysis."
     },
     {
-      title: "MerchAI Restyler",
-      desc: "An AI-powered web application that transforms basic product images into high-quality, marketing-ready visuals using a two-step AI pipeline.",
-      tech: [
-        "Next.js",
-        "TypeScript",
-        "TailwindCSS",
-        "Zustand",
-        "Supabase (PostgreSQL + Storage)",
-        "Zod",
-        "Gemini Vision",
-        "Freepik AI",
-      ],
-      github: "https://github.com/Naman13112004/ai-merch-stylist",
-      live: "https://merch-ai-restyler.vercel.app/",
-      image: "/projects/merchai.png",
-      longDesc: "Combines computer vision and image generation to help e-commerce brands create professional product imagery instantly."
-    },
-    {
-      title: "Planly",
-      desc: "A full-stack web application designed to facilitate structured event requirement posting with dynamic multi-step forms.",
-      tech: [
-        "React.js",
-        "TypeScript",
-        "Zustand",
-        "React Hook Form",
-        "Zod",
-        "Node.js",
-        "Express.js",
-        "MongoDB (Mongoose)",
-        "MVC Architecture"
-      ],
-      github: "https://github.com/Naman13112004/planly",
-      live: "https://planly-three.vercel.app/",
-      image: "/projects/planly.png",
-      longDesc: "Features a dynamic form engine where fields adapt based on the selected hiring category (Planner, Performer, Crew)."
-    },
-    {
       title: "cliflow",
       desc: "A production-quality, cross-platform CLI tool written in modern C++ that analyzes shell history files to generate insightful usage statistics.",
       tech: [
@@ -186,7 +193,7 @@ export const portfolioData = {
       github: "https://github.com/Naman13112004/cli-flow",
       live: "https://github.com/Naman13112004/cli-flow/releases",
       image: "/projects/cliflow.png",
-      longDesc: "Designed with zero dependencies, high performance, and compatibility with older compilers."
+      longDesc: "Designed with zero dependencies, high performance, and compatibility with older compilers. Includes automated CI/CD release workflows."
     }
   ]
 };
