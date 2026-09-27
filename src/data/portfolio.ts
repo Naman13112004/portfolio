@@ -197,3 +197,50 @@ export const portfolioData = {
     }
   ]
 };
+
+import type { GraphNode, GraphEdge } from './types';
+
+// Helper to derive graph relationships dynamically from the project data
+export function deriveGraphData(data: typeof portfolioData) {
+  const nodes: GraphNode[] = [];
+  const edges: GraphEdge[] = [];
+  
+  // 1. Identity Node
+  const identityId = 'identity-naman';
+  nodes.push({ id: identityId, type: 'identity', label: data.personalInfo.name });
+  
+  // 2. Currently Exploring Nodes (Provisional manual for now)
+  const exploringNodes = ['Cloud Infrastructure', 'DevOps', 'CI/CD'];
+  exploringNodes.forEach(exp => {
+    const id = `exp-${exp.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+    nodes.push({ id, type: 'exploring', label: exp });
+  });
+
+  const techSet = new Set<string>();
+
+  // 3. Projects and their technologies
+  data.projects.forEach(project => {
+    const projectId = `project-${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+    
+    // Add project node
+    nodes.push({ id: projectId, type: 'project', label: project.title });
+    
+    // Edge from identity to project
+    edges.push({ source: identityId, target: projectId });
+
+    project.tech.forEach(tech => {
+      const techId = `tech-${tech.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+      
+      // Keep track of unique technologies
+      if (!techSet.has(techId)) {
+        techSet.add(techId);
+        nodes.push({ id: techId, type: 'tech', label: tech });
+      }
+
+      // Edge from project to tech
+      edges.push({ source: projectId, target: techId });
+    });
+  });
+
+  return { nodes, edges };
+}

@@ -1,18 +1,47 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "./navbar";
+import { Outlet, Link } from "react-router-dom";
+import { useApp } from "../lib/AppContext";
 import Footer from "./footer";
 
 const Layout = () => {
+  const { lensMode, setLensMode } = useApp();
+
   return (
-    <div className="relative bg-white dark:bg-black min-h-screen">
-      <Navbar />
+    <div className="relative bg-[var(--color-canvas)] min-h-screen text-[var(--color-ink)] font-sans">
       
-      {/* The Main Content Wrapper
-        mb-[400px]: Reserves space for the footer to "reveal" behind it.
-        z-10: Ensures this content slides OVER the footer.
-        bg-white/black: Ensures opacity so footer is hidden until scroll.
-      */}
-      <main className="relative z-10 bg-white dark:bg-black shadow-2xl mb-100 min-h-screen">
+      {/* Global Navigation Shell */}
+      <header className="fixed top-0 inset-x-0 h-20 px-6 md:px-12 flex items-center justify-between z-40 bg-[var(--color-canvas)]/90 backdrop-blur-sm border-b border-[var(--color-border-subtle)]">
+        <Link to="/" className="font-display font-bold text-xl tracking-tight cursor-pointer" onClick={() => setLensMode('overview')}>
+          {'<Naman />'}
+        </Link>
+
+        {/* Lens Toggle (Hidden on mobile for now) */}
+        <div className="hidden md:flex items-center bg-white rounded-full p-1 shadow-sm border border-[var(--color-border-subtle)]">
+          <button
+            onClick={() => setLensMode('overview')}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+              lensMode === 'overview' ? 'bg-[var(--color-canvas)] shadow-sm text-[var(--color-ink)]' : 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]'
+            }`}
+          >
+            Overview
+          </button>
+          <button
+            onClick={() => setLensMode('explore')}
+            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+              lensMode === 'explore' ? 'bg-[var(--color-canvas)] shadow-sm text-[var(--color-ink)]' : 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]'
+            }`}
+          >
+            Explore
+          </button>
+        </div>
+
+        <div className="flex items-center gap-6 text-sm font-medium">
+          {/* Legacy Resume Link */}
+          <a href="/assets/Naman Jain Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-accent)] transition-colors">Resume</a>
+          <Link to="/contact" className="hover:text-[var(--color-accent)] transition-colors">Contact</Link>
+        </div>
+      </header>
+      
+      <main className="relative z-10 shadow-2xl mb-[100px] min-h-screen pt-20">
         <Outlet />
       </main>
 
