@@ -8,6 +8,7 @@ import Skills from "./pages/skills";
 import Blog from "./pages/blog";
 import Achievements from "./pages/achievements";
 import PrototypeApp from "./prototype/PrototypeApp";
+import OverviewPage from "./pages/overview";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* Foundation for new unified experience */}
-          <Route index element={<div className="min-h-screen pt-32 px-6 md:px-12 max-w-4xl mx-auto"><h1 className="text-3xl font-bold">Living Blueprint Foundation Ready</h1></div>} />
+          <Route index element={<OverviewPage />} />
           
           {/* Preserved Business Logic */}
           <Route path="contact" element={<Contact />} />

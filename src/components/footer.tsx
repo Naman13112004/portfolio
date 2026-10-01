@@ -1,16 +1,27 @@
+import { portfolioData } from '../data/portfolio';
+
 const Footer = () => {
   return (
-    <footer className="sticky bottom-0 z-2 h-100 w-full bg-white dark:bg-black flex items-center justify-center text-white">
-      <div className="text-center">
-        <h2 className="text-[10vw] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-gray-200 to-gray-600">
-          NAMAN JAIN
-        </h2>
-        <p className="text-xl md:text-2xl mt-4 text-blue-400 font-mono tracking-widest">
-          FULL STACK DEVELOPER
-        </p>
-        <p className="mt-8 text-gray-500 text-sm">
-          © {new Date().getFullYear()} TechyUDP. Built with React & Tailwind.
-        </p>
+    <footer className="w-full bg-[var(--color-ink)] text-white py-12 px-6 md:px-12 mt-12">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div>
+          <h2 className="font-display font-bold text-xl tracking-tight mb-2">
+            Naman Jain
+          </h2>
+          <p className="text-white/60 text-sm">
+            {portfolioData.personalInfo.tagline}
+          </p>
+        </div>
+        
+        <div className="flex items-center gap-6 text-sm text-white/60">
+          <a href="https://github.com/Naman13112004" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/naman-jain-b65428285/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+          <a href="https://x.com/NamanJain1304" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter (X)</a>
+        </div>
+      </div>
+      
+      <div className="max-w-4xl mx-auto mt-12 pt-8 border-t border-white/10 text-center md:text-left text-sm text-white/40">
+        © {new Date().getFullYear()} Naman Jain. Built with React & Tailwind.
       </div>
     </footer>
   );

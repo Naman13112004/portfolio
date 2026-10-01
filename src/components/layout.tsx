@@ -1,9 +1,16 @@
 import { Outlet, Link } from "react-router-dom";
 import { useApp } from "../lib/AppContext";
 import Footer from "./footer";
+import { AnimatePresence } from "framer-motion";
+import ProjectDeepDive from "./project/ProjectDeepDive";
+import { portfolioData } from "../data/portfolio";
 
 const Layout = () => {
-  const { lensMode, setLensMode } = useApp();
+  const { lensMode, setLensMode, activeProject } = useApp();
+
+  const activeProjectData = activeProject 
+    ? portfolioData.projects.find(p => p.title === activeProject) 
+    : null;
 
   return (
     <div className="relative bg-[var(--color-canvas)] min-h-screen text-[var(--color-ink)] font-sans">
@@ -41,11 +48,17 @@ const Layout = () => {
         </div>
       </header>
       
-      <main className="relative z-10 shadow-2xl mb-[100px] min-h-screen pt-20">
+      <main className="relative z-10 min-h-screen pt-20">
         <Outlet />
       </main>
 
       <Footer />
+
+      <AnimatePresence>
+        {activeProjectData && (
+          <ProjectDeepDive project={activeProjectData} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

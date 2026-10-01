@@ -1,27 +1,181 @@
 import { FileText } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaYoutube,
+  FaInstagram,
+} from "react-icons/fa";
 
 export const portfolioData = {
   personalInfo: {
     name: "Naman Jain",
-    role: "Full Stack Developer",
-    secondaryRole: "& DevOps Enthusiast",
+    role: "Backend Software Engineer",
+    secondaryRole: "Distributed Systems · AI Applications",
+    headline: "Backend Software Engineer | Distributed Systems | AI Applications",
+    status: "Final-year Computer Science student",
     location: "Rajkot, Gujarat, India",
-    email: "naman.jain.udp04@gmail.com", // [cite: 3]
-    bio: "I am a learnaholic Full Stack Developer with a passion for building scalable web applications. Currently diving deep into Cloud & DevOps to bridge the gap between development and operations. When I'm not coding, you'll find me singing, writing, or binge-watching K-dramas and movies.",
-    tagline: "Bytes and Beyond: Navigating Tech and Life", // Sourced from your YT channel context
+    email: "naman.jain.udp04@gmail.com",
+    bio: "Final-year Computer Science student focused on backend engineering, scalable APIs, distributed applications, and AI systems. Currently exploring cloud infrastructure, Docker, Kubernetes, and CI/CD while learning in public through technical content. Outside tech, I read widely—from mystery and thriller fiction to self-help and self-discovery and spend time writing and creating.",
+    tagline: "Bytes and Beyond: Navigating Tech and Life",
+  },
+
+  currentFocus: {
+    primary: [
+      "Cloud Infrastructure",
+      "DevOps",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "CI/CD",
+    ],
+    statement:
+      "Learning how software moves beyond development into deployment, infrastructure, reliability, and operations.",
+  },
+
+  learningInPublic: {
+    primaryPlatform: "LinkedIn",
+    active: true,
+    series: "Docker + Kubernetes",
+    description:
+      "Regularly learning Docker and Kubernetes while sharing the learning journey and practical takeaways in public.",
+    profileUrl: "https://www.linkedin.com/in/naman-jain-b65428285/",
+  },
+
+  codingStats: {
+    leetCodeSolved: "205+",
+    badges: ["50-Day LeetCode Badge", "HackerRank Gold 5-star Java", "HackerRank 1-star C++", "HackerRank 1-star Problem Solving"],
   },
 
   socials: [
-    { name: "GitHub", url: "https://github.com/Naman13112004", icon: FaGithub }, // [cite: 3]
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/naman-jain-b65428285/", icon: FaLinkedin }, // [cite: 3]
-    { name: "Twitter (X)", url: "https://x.com/NamanJain1304", icon: FaXTwitter }, // [cite: 3]
-    { name: "YouTube", url: "https://youtube.com/@TechyUDP", icon: FaYoutube }, // Added per request
-    { name: "Instagram", url: "https://www.instagram.com/techyudp/", icon: FaInstagram },
-    { name: "Resume", url: "/assets/Naman Jain Resume.pdf", icon: FileText },
+    {
+      name: "GitHub",
+      url: "https://github.com/Naman13112004",
+      icon: FaGithub,
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/naman-jain-b65428285/",
+      icon: FaLinkedin,
+    },
+    {
+      name: "Twitter (X)",
+      url: "https://x.com/NamanJain1304",
+      icon: FaXTwitter,
+    },
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@TechyUDP",
+      icon: FaYoutube,
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/techyudp/",
+      icon: FaInstagram,
+    },
+    {
+      name: "Resume",
+      url: "/assets/Naman Jain Resume.pdf",
+      icon: FileText,
+    },
   ],
 
+  experience: [
+    {
+      role: "Backend Developer Intern",
+      company: "Shipturtle Apps Pvt. Ltd.",
+      period: "July 2026 - Present",
+      location: "India",
+      highlights: [
+        "Learned PHP and Laravel within one week to contribute to a production SaaS codebase.",
+        "Developing backend features and RESTful APIs for a multi-vendor e-commerce marketplace platform.",
+        "Working with Laravel, MySQL, and third-party integrations to implement scalable business logic.",
+        "Debugging production issues, improving existing modules, and writing clean, maintainable backend code.",
+        "Collaborating through code reviews, testing, and iterative feature development in an agile environment.",
+      ],
+      technologies: ["PHP", "Laravel", "MySQL", "REST APIs"],
+    },
+  ],
+
+  education: [
+    {
+      institution: "Marwadi University",
+      degree: "B.Tech Computer Science",
+      period: "2023 - 2027",
+      grade: "CGPA: 9.85/10.00",
+    },
+  ],
+
+  achievements: [
+    {
+      title: "205+ LeetCode Problems",
+      detail: "Solved 205+ problems and earned the 50-Day LeetCode Badge.",
+      category: "Problem Solving",
+    },
+    {
+      title: "HackerRank Badges",
+      detail: "Gold 5-star Java, 1-star C++, and 1-star Problem Solving badges.",
+      category: "Problem Solving",
+    },
+    {
+      title: "Hacktoberfest 2024",
+      detail:
+        "Contributed code and fixes to ToolJet's open-source codebase.",
+      category: "Open Source",
+    },
+    {
+      title: "Technical Competitions",
+      detail: "Winner of 2 technical competitions demonstrating engineering problem-solving.",
+      category: "Competitions",
+    },
+    {
+      title: "UCMAS",
+      detail:
+        "National and State-Level winner; solved 200 arithmetic problems in 8 minutes.",
+      category: "Foundations",
+    },
+    {
+      title: "Competitive Programming Club",
+      detail: "Pseudo Core Committee Member.",
+      category: "Community",
+    },
+  ],
+
+  interests: {
+    reading: [
+      "Mystery & thriller fiction",
+      "Self-help",
+      "Self-discovery",
+      "Wider fiction and nonfiction",
+    ],
+    creative: [
+      "Writing",
+      "Technical content creation",
+    ],
+  },
+
+  content: {
+    linkedin: {
+      active: true,
+      description:
+        "Regularly publishing technical learning in public on LinkedIn.",
+      currentSeries: "Docker + Kubernetes",
+      seriesDescription:
+        "Learning Docker and Kubernetes while simultaneously documenting and sharing the journey.",
+      url: "https://www.linkedin.com/in/naman-jain-b65428285/",
+    },
+    youtube: {
+      name: "TechyUDP",
+      url: "https://youtube.com/@TechyUDP",
+    },
+    instagram: {
+      handle: "@techyudp",
+      url: "https://www.instagram.com/techyudp/",
+    },
+  },
+
+  // Legacy skill data retained for backward compatibility with older components.
+  // The redesigned UI should NOT display the numeric `level` values.
   skills: [
     {
       category: "Frontend Engineering",
@@ -33,7 +187,7 @@ export const portfolioData = {
         { name: "TypeScript (Strict Typing, Generics)", level: 90 },
         { name: "Responsive & Accessible UI Design", level: 90 },
         { name: "Client & Server Rendering (SSR/CSR/ISR)", level: 80 },
-      ]
+      ],
     },
 
     {
@@ -46,7 +200,7 @@ export const portfolioData = {
         { name: "API Integration (AI & Third-party APIs)", level: 90 },
         { name: "MVC & Modular Backend Architecture", level: 80 },
         { name: "WebSockets & Real-time Communication", level: 70 },
-      ]
+      ],
     },
 
     {
@@ -56,8 +210,8 @@ export const portfolioData = {
         { name: "C++ (DSA, CLI Tools)", level: 75 },
         { name: "Java (OOPS)", level: 75 },
         { name: "CLI Application Development", level: 75 },
-        { name: "Python (Scripting & Tooling)", level: 40 }
-      ]
+        { name: "Python (Scripting & Tooling)", level: 40 },
+      ],
     },
 
     {
@@ -65,8 +219,8 @@ export const portfolioData = {
       items: [
         { name: "Zustand (Global State Management)", level: 85 },
         { name: "React Hook Form (Complex & Multi-step Forms)", level: 85 },
-        { name: "Zod (Schema Validation & Runtime Safety)", level: 85 }
-      ]
+        { name: "Zod (Schema Validation & Runtime Safety)", level: 85 },
+      ],
     },
 
     {
@@ -75,8 +229,8 @@ export const portfolioData = {
         { name: "PostgreSQL / SQL", level: 80 },
         { name: "MongoDB (Schema Design, Indexing)", level: 80 },
         { name: "Prisma ORM (Type-safe DB Access)", level: 80 },
-        { name: "Supabase (Postgres, Auth, Storage)", level: 75 }
-      ]
+        { name: "Supabase (Postgres, Auth, Storage)", level: 75 },
+      ],
     },
 
     {
@@ -86,7 +240,7 @@ export const portfolioData = {
         { name: "Prompt Engineering (Text & Image)", level: 80 },
         { name: "AI-assisted UX & Automation", level: 75 },
         { name: "Computer Vision Pipelines", level: 70 },
-      ]
+      ],
     },
 
     {
@@ -98,147 +252,257 @@ export const portfolioData = {
         { name: "Docker (Containers & Images)", level: 50 },
         { name: "CI/CD Pipelines (GitHub Actions)", level: 45 },
         { name: "AWS (EC2, S3, IAM)", level: 40 },
-        { name: "System Design Fundamentals", level: 40 }
-      ]
+        { name: "System Design Fundamentals", level: 40 },
+      ],
     },
   ],
+
+  // Resume-backed technical profile. Use this for the redesigned UI instead of skill percentages.
+  technicalProfile: [
+    {
+      category: "Languages",
+      items: ["C++", "Java", "PHP", "Python", "JavaScript", "TypeScript"],
+    },
+    {
+      category: "Backend & Systems",
+      items: [
+        "Node.js",
+        "Express.js",
+        "Laravel",
+        "FastAPI",
+        "REST APIs",
+        "WebSockets",
+      ],
+    },
+    {
+      category: "Frontend",
+      items: ["React", "Next.js", "Tailwind CSS"],
+    },
+    {
+      category: "Databases",
+      items: ["MySQL", "PostgreSQL", "MongoDB", "Prisma", "Redis"],
+    },
+    {
+      category: "DevOps & Cloud",
+      items: ["Docker", "AWS", "GitHub Actions", "CI/CD", "Linux", "Git"],
+    },
+    {
+      category: "AI & ML",
+      items: [
+        "OpenAI API",
+        "Gemini API",
+        "Federated Learning",
+        "Computer Vision",
+      ],
+    },
+    {
+      category: "CS Foundations",
+      items: ["Data Structures & Algorithms", "OOP", "OS", "DBMS", "CN", "System Design"],
+    },
+  ],
+
 
   projects: [
     {
       title: "Snap Attend - AI Attendance System",
-      desc: "An open-source face-recognition attendance system built to explore real-world AI deployment beyond simple prototypes.",
+      desc:
+        "An open-source face-recognition attendance system designed around real-world AI deployment, scalable backend services, and reliable image-processing workflows.",
       tech: [
         "Next.js",
         "Node.js",
         "FastAPI",
+        "PostgreSQL",
+        "Docker",
         "Computer Vision",
-        "Microservices"
+        "Microservices",
       ],
       github: "https://github.com/Naman13112004/picture-based-attendance",
       live: "https://snap-attend.vercel.app/",
       image: "/projects/snapattend.png",
-      longDesc: "Features a polyglot backend separating application logic from ML inference workloads, tackling challenges around image processing latency and service orchestration."
+      longDesc:
+        "Designed a microservice-based architecture using Node.js and FastAPI, separating application services from ML inference workloads. Developed secure REST APIs, database workflows, and image-processing pipelines for attendance tracking, then containerized services with Docker to improve environment consistency and support production-oriented deployment workflows.",
+      architecture: [
+        { label: "Frontend Application" },
+        { label: "Node.js API" },
+        { label: "FastAPI ML Inference" },
+        { label: "PostgreSQL Database" }
+      ]
     },
+
     {
-      title: "RBAC Backend System",
-      desc: "A secure, high-performance backend system built from scratch, focusing on authorization, reliability, and security. Implements robust Role-Based Access Control and JWT authentication.",
+      title: "Secure RBAC Backend System",
+      desc:
+        "A production-style backend system focused on authentication, authorization, API security, reliability, and measurable performance improvements.",
       tech: [
         "Node.js",
         "Express",
         "MongoDB",
         "Redis",
-        "System Design"
+        "JWT",
+        "REST APIs",
+        "System Design",
       ],
       github: "https://github.com/Naman13112004/backend-rbac-task",
       live: "https://backend-rbac-task.vercel.app/",
-      image: "/projects/rbac.png", // Make sure to add this image to your public folder
-      longDesc: "Reduced API latency from ~2s to ~600ms using Redis caching and query optimization. Designed rate-limiting and security middleware to ensure stability under load simulations."
-    },
-    {
-      title: "Federated Learning System",
-      desc: "A decentralized machine learning pipeline enabling privacy-preserving AI training on non-IID client data without sharing raw medical images.",
-      tech: [
-        "Python",
-        "Distributed ML",
-        "Federated Learning",
-        "Deep Learning"
+      image: "/projects/rbac.png",
+      longDesc:
+        "Engineered JWT authentication, role-based authorization, REST APIs, rate limiting, validation, password hashing, and security-focused middleware. Improved API performance from approximately 2s to 600ms through Redis caching, database optimization, and efficient query design, then validated the system with API testing, debugging, and load simulations.",
+      metrics: [
+        { label: "API Latency Reduction", value: "~2s → ~600ms" }
       ],
-      github: "https://github.com/Naman13112004/Lung-Tumor-FL",
-      live: "", 
-      image: "/projects/federated.png",
-      longDesc: "Trained MobileNetV2 on ~15K medical images achieving 98.93% accuracy. Explored performance vs. privacy trade-offs, with research under paper submission."
+      architecture: [
+        { label: "Client Request" },
+        { label: "API / Rate Limiting" },
+        { label: "Auth / RBAC Middleware" },
+        { label: "Redis Cache" },
+        { label: "MongoDB" }
+      ]
     },
+
     {
-      title: "MeetAI - AI Agent Video Call",
-      desc: "A real-time video calling web application focused on intelligent meetings. Supports secure authentication, scheduled meetings, live video rooms, call recordings, AI-generated transcripts and summaries, and conversational agents.",
+      title: "MeetAI - Real-Time AI Collaboration Platform",
+      desc:
+        "A real-time collaboration platform combining low-latency communication with AI-powered transcription, summaries, and meeting workflows.",
       tech: [
         "Next.js",
+        "WebRTC",
+        "WebSockets",
+        "OpenAI",
         "TypeScript",
-        "TailwindCSS",
         "Stream Video SDK",
-        "OpenAI API",
       ],
       github: "https://github.com/Naman13112004/meetai",
       live: "https://meetai-rosy.vercel.app/",
       image: "/projects/meetai.png",
-      longDesc: "Designed to explore the intersection of real-time communication and AI-assisted collaboration. Features include secure auth, room management, and live transcription."
+      longDesc:
+        "Developed a real-time collaboration platform using WebSockets and event-driven architecture for concurrent users and low-latency communication. Integrated AI-powered transcription and meeting summarization, and built authentication, scheduling, subscription, and modular backend workflows while debugging real-time synchronization and reliability issues across application services.",
     },
+
     {
-      title: "Welth - Finance Manager",
-      desc: "A full-stack finance tracking platform built for personal use, featuring income/expense tracking, budget alerts, financial dashboards, and AI-powered insights.",
+      title: "CLIFlow - C++ Command Line Application",
+      desc:
+        "A high-performance, cross-platform C++ CLI application that analyzes shell history using optimized data structures and memory-efficient algorithms.",
       tech: [
-        "Next.js",
-        "TypeScript",
-        "TailwindCSS",
-        "Prisma ORM",
-        "Clerk Authentication",
-        "Gemini API",
-        "Dashboard & Data Visualization"
-      ],
-      github: "https://github.com/Naman13112004/welth",
-      live: "https://welth-ashen-one.vercel.app/",
-      image: "/projects/welth.png",
-      longDesc: "Emphasizes clean data modeling, secure authentication, and actionable financial summaries with charts and AI analysis."
-    },
-    {
-      title: "cliflow",
-      desc: "A production-quality, cross-platform CLI tool written in modern C++ that analyzes shell history files to generate insightful usage statistics.",
-      tech: [
-        "C++ (C++11/14/17 compatible)",
-        "STL (Standard Library Only)",
-        "CLI Argument Parsing",
+        "C++",
+        "GitHub Actions",
+        "Algorithms",
+        "CLI",
         "Modular Architecture",
-        "Static Binary Distribution"
       ],
       github: "https://github.com/Naman13112004/cli-flow",
       live: "https://github.com/Naman13112004/cli-flow/releases",
       image: "/projects/cliflow.png",
-      longDesc: "Designed with zero dependencies, high performance, and compatibility with older compilers. Includes automated CI/CD release workflows."
-    }
-  ]
+      longDesc:
+        "Built a modular, memory-efficient command-line application focused on performance, maintainability, structured logging, and cross-platform behavior. Automated build, testing, and release workflows using GitHub Actions CI/CD to reduce manual deployment effort.",
+    },
+
+    {
+      title: "Welth - AI Powered Finance Management",
+      desc:
+        "A modular full-stack finance platform combining structured financial data, secure backend workflows, interactive dashboards, and AI-powered insights.",
+      tech: [
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "TypeScript",
+        "Gemini API",
+        "Authentication",
+      ],
+      github: "https://github.com/Naman13112004/welth",
+      live: "https://welth-ashen-one.vercel.app/",
+      image: "/projects/welth.png",
+      longDesc:
+        "Built a modular SaaS application with authentication, financial data management, REST APIs, rate limiting, backend validation, and AI-powered insights. Designed relational PostgreSQL schemas with Prisma while focusing on maintainability, efficient queries, data consistency, and scalable dashboard architecture.",
+    },
+
+    {
+      title: "Federated Learning System",
+      desc:
+        "A distributed machine learning pipeline exploring collaborative training on decentralized, non-IID data without sharing raw medical images.",
+      tech: [
+        "Python",
+        "PyTorch",
+        "FedAvg",
+        "FedProx",
+        "Distributed ML",
+        "Privacy-Preserving AI",
+      ],
+      github: "https://github.com/Naman13112004/Lung-Tumor-FL",
+      live: "",
+      image: "/projects/federated.png",
+      longDesc:
+        "Implemented a distributed learning pipeline using FedAvg and FedProx, with reproducible experiments for non-IID client data and analysis of communication efficiency and model convergence. Trained MobileNetV2 on approximately 15,000 medical images and achieved 98.93% accuracy while studying privacy-preserving AI architectures and engineering trade-offs.",
+      metrics: [
+        { label: "Training Dataset", value: "~15,000 images" },
+        { label: "Model Accuracy", value: "98.93%" }
+      ]
+    },
+  ],
 };
 
-import type { GraphNode, GraphEdge } from './types';
+import type { GraphNode, GraphEdge } from "./types";
 
-// Helper to derive graph relationships dynamically from the project data
+function slugify(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Derive the Explore graph from the same source data used by Overview.
+// Relationships are data-driven rather than hardcoded.
 export function deriveGraphData(data: typeof portfolioData) {
   const nodes: GraphNode[] = [];
   const edges: GraphEdge[] = [];
-  
-  // 1. Identity Node
-  const identityId = 'identity-naman';
-  nodes.push({ id: identityId, type: 'identity', label: data.personalInfo.name });
-  
-  // 2. Currently Exploring Nodes (Provisional manual for now)
-  const exploringNodes = ['Cloud Infrastructure', 'DevOps', 'CI/CD'];
-  exploringNodes.forEach(exp => {
-    const id = `exp-${exp.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
-    nodes.push({ id, type: 'exploring', label: exp });
+
+  const identityId = "identity-naman";
+  nodes.push({
+    id: identityId,
+    type: "identity",
+    label: data.personalInfo.name,
+  });
+
+  // Current learning direction comes directly from portfolio data.
+  data.currentFocus.primary.forEach((focus) => {
+    const id = `exp-${slugify(focus)}`;
+
+    nodes.push({
+      id,
+      type: "exploring",
+      label: focus,
+    });
   });
 
   const techSet = new Set<string>();
 
-  // 3. Projects and their technologies
-  data.projects.forEach(project => {
-    const projectId = `project-${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
-    
-    // Add project node
-    nodes.push({ id: projectId, type: 'project', label: project.title });
-    
-    // Edge from identity to project
-    edges.push({ source: identityId, target: projectId });
+  data.projects.forEach((project) => {
+    const projectId = `project-${slugify(project.title)}`;
 
-    project.tech.forEach(tech => {
-      const techId = `tech-${tech.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
-      
-      // Keep track of unique technologies
+    nodes.push({
+      id: projectId,
+      type: "project",
+      label: project.title,
+    });
+
+    edges.push({
+      source: identityId,
+      target: projectId,
+    });
+
+    project.tech.forEach((tech) => {
+      const techId = `tech-${slugify(tech)}`;
+
       if (!techSet.has(techId)) {
         techSet.add(techId);
-        nodes.push({ id: techId, type: 'tech', label: tech });
+
+        nodes.push({
+          id: techId,
+          type: "tech",
+          label: tech,
+        });
       }
 
-      // Edge from project to tech
-      edges.push({ source: projectId, target: techId });
+      edges.push({
+        source: projectId,
+        target: techId,
+      });
     });
   });
 
