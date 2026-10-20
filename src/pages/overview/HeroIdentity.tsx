@@ -1,65 +1,104 @@
-import type { PersonalInfo, CurrentFocus, Content } from '../../data/types';
-import { motion } from 'framer-motion';
+import type { PersonalInfo, CurrentFocus, Content, Experience } from '../../data/types';
+import { ArrowRight } from 'lucide-react';
+import { useApp } from '../../lib/AppContext';
+import { HeroRule, HeroStep } from '../../components/reveal';
+import { Eyebrow, TechChips } from './primitives';
 
 interface HeroProps {
   data: PersonalInfo;
   focus: CurrentFocus;
   content: Content;
+  /** The role held today, shown in the "Now" note. */
+  current: Experience;
 }
 
-export default function HeroIdentity({ data, focus, content }: HeroProps) {
+const pathStep = 'font-mono text-[10px] font-semibold uppercase tracking-[0.07em]';
+const pathLine =
+  'relative h-px bg-line after:absolute after:-top-[2px] after:right-0 after:border-y-[2px] after:border-l-[4px] after:border-y-transparent after:border-l-line after:content-[""]';
+
+export default function HeroIdentity({ data, focus, content, current }: HeroProps) {
+  const { switchLens } = useApp();
+  const [firstName, ...otherNames] = data.name.split(' ');
+
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="mt-12 md:mt-24 mb-24 md:mb-32 grid md:grid-cols-12 gap-12 md:gap-8 items-start"
+    <section
+      aria-labelledby="hero-title"
+      className="shell-width grid min-h-[680px] grid-cols-[1.45fr_0.75fr] items-center gap-[clamp(3rem,8vw,8rem)] border-b border-line py-[70px] max-[900px]:min-h-[620px] max-[900px]:gap-[35px] max-[680px]:block max-[680px]:min-h-0 max-[680px]:pb-[70px] max-[680px]:pt-[50px]"
     >
-      {/* LEFT / PRIMARY */}
-      <div className="md:col-span-7 lg:col-span-8">
-        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-[var(--color-ink)] mb-6 leading-tight">
-          {data.name}
-        </h1>
-        <div className="space-y-2 mb-8">
-          <h2 className="text-xl md:text-2xl text-[var(--color-ink)] font-semibold">
-            {data.role}
-          </h2>
-          <h3 className="text-lg md:text-xl text-[var(--color-ink-muted)]">
+      <div>
+        <HeroStep step={0}>
+          <Eyebrow>
+            {data.role} · {data.location}
+          </Eyebrow>
+        </HeroStep>
+
+        <HeroStep as="div" step={1}>
+          <h1
+            id="hero-title"
+            className="mb-3 mt-[22px] font-display text-[clamp(5.2rem,9vw,8.4rem)] font-medium leading-[0.77] tracking-[-0.075em] max-[900px]:text-[clamp(4.2rem,10vw,6rem)] max-[680px]:mt-[25px] max-[680px]:text-[clamp(4.5rem,23vw,6.2rem)]"
+          >
+            <span className="block">{firstName}</span>
+            <span className="ml-[0.62em] block text-accent max-[680px]:ml-[0.3em]">{otherNames.join(' ')}.</span>
+          </h1>
+        </HeroStep>
+
+        <HeroStep step={2}>
+          <p className="mb-4 mt-[38px] font-display text-[clamp(1.35rem,2.2vw,2rem)] font-medium leading-tight max-[680px]:mt-[34px] max-[680px]:text-[1.35rem]">
             {data.secondaryRole}
-          </h3>
-        </div>
-        <p className="text-base md:text-lg text-[var(--color-ink-muted)] max-w-xl leading-relaxed">
-          {data.status}. {data.bio.split('.')[0]}.
-        </p>
+          </p>
+        </HeroStep>
+
+        <HeroStep step={3}>
+          <p className="max-w-[580px] text-lg text-slate max-[680px]:text-base">{data.intro}</p>
+        </HeroStep>
+
+        <HeroStep step={5}>
+          <button
+            type="button"
+            onClick={() => switchLens('explore')}
+            className="group mt-[18px] inline-flex items-center gap-2 border-b border-current py-1 font-semibold transition-transform duration-150 active:scale-[0.97]"
+          >
+            Explore the connections
+            <ArrowRight
+              size={16}
+              strokeWidth={1.5}
+              aria-hidden="true"
+              className="transition-transform duration-200 ease-[var(--ease-enter)] group-hover:translate-x-1"
+            />
+          </button>
+        </HeroStep>
       </div>
 
-      {/* RIGHT / CURRENT */}
-      <div className="md:col-span-5 lg:col-span-4 bg-white p-6 md:p-8 rounded-2xl border border-[var(--color-border-subtle)] shadow-sm relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-[var(--color-accent)] opacity-20"></div>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-          <span className="text-xs font-bold tracking-widest text-[var(--color-accent)] uppercase">Now</span>
+      <HeroStep
+        as="aside"
+        step={4}
+        aria-label="Current focus"
+        className="relative border border-line bg-paper p-[clamp(1.5rem,3vw,2.5rem)] shadow-paper max-[680px]:mt-[50px] max-[680px]:shadow-[7px_7px_0_var(--color-stone)]"
+      >
+        <HeroRule />
+        <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-accent">
+          <span className="h-[7px] w-[7px] rounded-full bg-accent" aria-hidden="true" />
+          Now / 2026
         </div>
-        
-        <div className="mb-6">
-          <p className="text-sm text-[var(--color-ink-muted)] mb-3">Current direction:</p>
-          <ul className="flex flex-wrap gap-2">
-            {focus.primary.map(item => (
-              <li key={item} className="text-xs font-medium bg-[var(--color-canvas)] border border-[var(--color-border-subtle)] px-2 py-1 rounded">
-                {item}
-              </li>
-            ))}
-          </ul>
+        <h2 className="mb-[22px] mt-[35px] font-display text-[clamp(1.8rem,3vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.035em]">
+          Building in production. Learning in public.
+        </h2>
+        <p className="text-slate">
+          {current.role} at <strong className="font-semibold">{current.company}</strong>, while documenting a{' '}
+          {content.linkedin.currentSeries} learning series.
+        </p>
+        <TechChips items={focus.primary} className="mt-5" />
+        <div
+          className="mt-[35px] grid grid-cols-[auto_1fr_auto_1fr_auto] items-center gap-2"
+          aria-label="Learn, build, share"
+        >
+          <span className={pathStep}>Learn</span>
+          <i className={pathLine} />
+          <span className={pathStep}>Build</span>
+          <i className={pathLine} />
+          <span className={pathStep}>Share</span>
         </div>
-        
-        {content.linkedin.active && (
-          <div className="pt-5 border-t border-[var(--color-border-subtle)]">
-            <p className="text-sm text-[var(--color-ink-muted)] mb-2">Learning in public on LinkedIn:</p>
-            <a href={content.linkedin.url} target="_blank" rel="noopener noreferrer" className="block text-sm font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors">
-              Ongoing {content.linkedin.currentSeries} series ↗
-            </a>
-          </div>
-        )}
-      </div>
-    </motion.section>
+      </HeroStep>
+    </section>
   );
 }

@@ -18,6 +18,8 @@ export const portfolioData = {
     email: "naman.jain.udp04@gmail.com",
     bio: "Final-year Computer Science student focused on backend engineering, scalable APIs, distributed applications, and AI systems. Currently exploring cloud infrastructure, Docker, Kubernetes, and CI/CD while learning in public through technical content. Outside tech, I read widely—from mystery and thriller fiction to self-help and self-discovery and spend time writing and creating.",
     tagline: "Bytes and Beyond: Navigating Tech and Life",
+    intro:
+      "Final-year Computer Science student focused on backend engineering, scalable APIs, distributed applications, and AI systems.",
   },
 
   currentFocus: {
@@ -84,7 +86,8 @@ export const portfolioData = {
     {
       role: "Backend Developer Intern",
       company: "Shipturtle Apps Pvt. Ltd.",
-      period: "July 2026 - Present",
+      period: "July 2026 – Present",
+      current: true,
       location: "India",
       highlights: [
         "Learned PHP and Laravel within one week to contribute to a production SaaS codebase.",
@@ -101,7 +104,7 @@ export const portfolioData = {
     {
       institution: "Marwadi University",
       degree: "B.Tech Computer Science",
-      period: "2023 - 2027",
+      period: "2023–2027",
       grade: "CGPA: 9.85/10.00",
     },
   ],
@@ -302,9 +305,44 @@ export const portfolioData = {
   ],
 
 
+  // Technology-to-project relationships for the Overview evidence table.
+  // Each row is backed by the project's `tech` list and `longDesc`.
+  technicalEvidence: [
+    {
+      technology: "Redis",
+      project: "Secure RBAC Backend System",
+      note: "Caching + query optimization",
+    },
+    {
+      technology: "FastAPI",
+      project: "Snap Attend - AI Attendance System",
+      note: "Isolated ML inference service",
+    },
+    {
+      technology: "WebRTC",
+      project: "MeetAI - Real-Time AI Collaboration Platform",
+      note: "Low-latency communication",
+    },
+    {
+      technology: "GitHub Actions",
+      project: "CLIFlow - C++ Command Line Application",
+      note: "Build · test · release",
+    },
+    {
+      technology: "Docker",
+      project: "Snap Attend - AI Attendance System",
+      note: "Consistent service environments",
+    },
+  ],
+
   projects: [
     {
       title: "Snap Attend - AI Attendance System",
+      shortTitle: "Snap Attend",
+      domain: "AI attendance system",
+      evidence:
+        "Node.js and FastAPI separate application services from ML inference workloads, containerized with Docker.",
+      featured: true,
       desc:
         "An open-source face-recognition attendance system designed around real-world AI deployment, scalable backend services, and reliable image-processing workflows.",
       tech: [
@@ -331,6 +369,12 @@ export const portfolioData = {
 
     {
       title: "Secure RBAC Backend System",
+      shortTitle: "Secure RBAC Backend System",
+      domain: "Authentication · authorization · API reliability",
+      evidence:
+        "Redis caching, database optimization, and efficient query design improved API performance.",
+      metric: "~2s → ~600ms",
+      featured: true,
       desc:
         "A production-style backend system focused on authentication, authorization, API security, reliability, and measurable performance improvements.",
       tech: [
@@ -361,6 +405,10 @@ export const portfolioData = {
 
     {
       title: "MeetAI - Real-Time AI Collaboration Platform",
+      shortTitle: "MeetAI",
+      domain: "Real-time AI collaboration",
+      evidence:
+        "Event-driven real-time communication with AI-powered transcription, meeting summaries, scheduling, and subscriptions.",
       desc:
         "A real-time collaboration platform combining low-latency communication with AI-powered transcription, summaries, and meeting workflows.",
       tech: [
@@ -380,6 +428,10 @@ export const portfolioData = {
 
     {
       title: "CLIFlow - C++ Command Line Application",
+      shortTitle: "CLIFlow",
+      domain: "C++ command-line tooling",
+      evidence:
+        "Automated build, testing, and release workflows using GitHub Actions.",
       desc:
         "A high-performance, cross-platform C++ CLI application that analyzes shell history using optimized data structures and memory-efficient algorithms.",
       tech: [
@@ -398,6 +450,10 @@ export const portfolioData = {
 
     {
       title: "Welth - AI Powered Finance Management",
+      shortTitle: "Welth",
+      domain: "AI-powered finance management",
+      evidence:
+        "Rate limiting, backend validation, and relational PostgreSQL data modelling with Prisma.",
       desc:
         "A modular full-stack finance platform combining structured financial data, secure backend workflows, interactive dashboards, and AI-powered insights.",
       tech: [
@@ -417,6 +473,11 @@ export const portfolioData = {
 
     {
       title: "Federated Learning System",
+      shortTitle: "Federated Learning System",
+      domain: "Privacy-preserving distributed ML",
+      evidence:
+        "MobileNetV2 trained on approximately 15,000 medical images, achieving 98.93% accuracy.",
+      metric: "98.93%",
       desc:
         "A distributed machine learning pipeline exploring collaborative training on decentralized, non-IID data without sharing raw medical images.",
       tech: [

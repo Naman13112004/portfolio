@@ -15,6 +15,14 @@
   --color-clay: #F3E0D9;
   --color-forest: #28634F;
 
+  /* Dark ink surfaces (Make evidence band) */
+  --color-ink-line: #3A4251;
+  --color-ink-raised: #202A3D;
+  --color-on-ink-muted: #AAB2BD;
+  --color-on-ink-faint: #8993A2;
+  --color-on-ink-soft: #C2C8D0;
+  --color-accent-soft: #F1A08D;
+
   /* Typography. font-sans resolves to Inter so wrappers using `font-sans` match the body. */
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -59,6 +67,15 @@
 @utility shell-width {
   width: min(calc(100% - 2 * var(--layout-pad)), var(--layout-max));
   margin-inline: auto;
+}
+
+/* Vertical rhythm between Overview sections */
+@utility section-pad {
+  padding-block: clamp(5rem, 9vw, 8rem);
+
+  @media (max-width: 680px) {
+    padding-block: 70px;
+  }
 }
 
 body {

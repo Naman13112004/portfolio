@@ -9,36 +9,38 @@ import ContactSection from './ContactSection';
 import { portfolioData } from '../../data/portfolio';
 
 export default function OverviewPage() {
+  const currentRole = portfolioData.experience.find((job) => job.current) ?? portfolioData.experience[0];
+
   return (
-    <div className="min-h-screen pt-24 pb-12 px-6 md:px-12 max-w-5xl mx-auto">
-      <HeroIdentity 
-        data={portfolioData.personalInfo} 
+    <div>
+      <HeroIdentity
+        data={portfolioData.personalInfo}
         focus={portfolioData.currentFocus}
-        content={portfolioData.content} 
+        content={portfolioData.content}
+        current={currentRole}
       />
-      
+
       <WorkExperience experience={portfolioData.experience} />
-      
+
       <ProjectIndex projects={portfolioData.projects} />
-      
-      <TechnicalEvidence 
-        profile={portfolioData.technicalProfile} 
-        projects={portfolioData.projects} 
-      />
-      
-      <LearningInPublic data={portfolioData.learningInPublic} />
-      
-      <CreativeIdentity 
-        interests={portfolioData.interests} 
-        content={portfolioData.content} 
-      />
-      
-      <Foundations 
-        education={portfolioData.education} 
-        achievements={portfolioData.achievements} 
-      />
-      
-      <ContactSection />
+
+      <TechnicalEvidence items={portfolioData.technicalEvidence} projects={portfolioData.projects} />
+
+      <LearningInPublic data={portfolioData.learningInPublic} focus={portfolioData.currentFocus} />
+
+      <section
+        aria-labelledby="outside-title"
+        className="shell-width section-pad grid grid-cols-[1.1fr_0.9fr] gap-[10vw] max-[680px]:grid-cols-1 max-[680px]:gap-[45px]"
+      >
+        <CreativeIdentity interests={portfolioData.interests} content={portfolioData.content} />
+        <Foundations education={portfolioData.education} achievements={portfolioData.achievements} />
+      </section>
+
+      <div className="bg-stone">
+        <div className="shell-width section-pad">
+          <ContactSection />
+        </div>
+      </div>
     </div>
   );
 }

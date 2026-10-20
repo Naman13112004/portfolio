@@ -1,57 +1,26 @@
 import type { Interests, Content } from '../../data/types';
-import { motion } from 'framer-motion';
-import { FaYoutube, FaInstagram } from 'react-icons/fa';
+import { Reveal } from '../../components/reveal';
+import { Eyebrow, ExternalLink, SectionTitle } from './primitives';
 
-export default function CreativeIdentity({ interests, content }: { interests: Interests, content: Content }) {
+/** "Outside the code": built only from the verified interests and content-platform data. */
+export default function CreativeIdentity({ interests, content }: { interests: Interests; content: Content }) {
+  const topics = [...interests.reading, ...interests.creative].join(', ');
+
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="mb-24 bg-white border border-[var(--color-border-subtle)] rounded-2xl p-8 md:p-12"
-    >
-      <h2 className="font-display text-2xl font-bold text-[var(--color-ink)] mb-8">
-        Outside Code
-      </h2>
-      
-      <div className="grid md:grid-cols-2 gap-12">
-        <div>
-          <h3 className="text-sm font-bold tracking-widest text-[var(--color-ink-muted)] uppercase mb-4">Reading & Exploration</h3>
-          <ul className="space-y-2">
-            {interests.reading.map(r => (
-              <li key={r} className="text-[var(--color-ink)] font-medium text-sm">
-                {r}
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        <div>
-          <h3 className="text-sm font-bold tracking-widest text-[var(--color-ink-muted)] uppercase mb-4">Content & Creation</h3>
-          <ul className="space-y-2 mb-6">
-            {interests.creative.map(c => (
-              <li key={c} className="text-[var(--color-ink)] font-medium text-sm">
-                {c}
-              </li>
-            ))}
-          </ul>
-          
-          <div className="flex gap-4">
-            {content.youtube.url && (
-              <a href={content.youtube.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-semibold text-[var(--color-ink-muted)] hover:text-[#FF0000] transition-colors">
-                <FaYoutube size={18} />
-                {content.youtube.name}
-              </a>
-            )}
-            {content.instagram.url && (
-              <a href={content.instagram.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-semibold text-[var(--color-ink-muted)] hover:text-[#E1306C] transition-colors">
-                <FaInstagram size={18} />
-                {content.instagram.handle}
-              </a>
-            )}
-          </div>
-        </div>
+    <Reveal className="min-w-0">
+      <Eyebrow>Outside the code</Eyebrow>
+      <SectionTitle id="outside-title" className="mb-6 mt-3">
+        Reading widely. Writing and creating.
+      </SectionTitle>
+      <p className="max-w-[650px] text-slate">{topics}.</p>
+      <div className="mt-[35px] flex flex-wrap gap-6 text-[13px]">
+        {content.youtube.url && (
+          <ExternalLink href={content.youtube.url}>{content.youtube.name} / YouTube</ExternalLink>
+        )}
+        {content.instagram.url && (
+          <ExternalLink href={content.instagram.url}>{content.instagram.handle} / Instagram</ExternalLink>
+        )}
       </div>
-    </motion.section>
+    </Reveal>
   );
 }

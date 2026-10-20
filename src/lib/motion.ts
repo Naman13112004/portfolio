@@ -54,6 +54,12 @@ export const enterTransition = (seconds: number, delaySeconds = 0): Transition =
   ease: ease.enter,
 });
 
+/** Accent rule drawn along the top edge of the hero "Now" note. */
+export const heroRule: Variants = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: enterTransition(0.5, delay.heroRule) },
+};
+
 /** Scroll reveal: fade up 18px. Use with whileInView and viewport={revealViewport}. */
 export const revealViewport = { once: true, amount: 0.12, margin: '0px 0px -8% 0px' } as const;
 

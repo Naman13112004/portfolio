@@ -1,27 +1,24 @@
 import { portfolioData } from '../data/portfolio';
 
+const links = portfolioData.socials.filter((social) => ['GitHub', 'LinkedIn', 'Twitter (X)'].includes(social.name));
+
 const Footer = () => {
   return (
-    <footer className="w-full bg-[var(--color-ink)] text-white py-12 px-6 md:px-12 mt-12">
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div>
-          <h2 className="font-display font-bold text-xl tracking-tight mb-2">
-            Naman Jain
-          </h2>
-          <p className="text-white/60 text-sm">
-            {portfolioData.personalInfo.tagline}
-          </p>
-        </div>
-        
-        <div className="flex items-center gap-6 text-sm text-white/60">
-          <a href="https://github.com/Naman13112004" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
-          <a href="https://www.linkedin.com/in/naman-jain-b65428285/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="https://x.com/NamanJain1304" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter (X)</a>
-        </div>
-      </div>
-      
-      <div className="max-w-4xl mx-auto mt-12 pt-8 border-t border-white/10 text-center md:text-left text-sm text-white/40">
-        © {new Date().getFullYear()} Naman Jain. Built with React & Tailwind.
+    <footer className="shell-width flex flex-wrap items-center justify-between gap-x-8 gap-y-2 py-7 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-slate max-[680px]:grid">
+      <span>{portfolioData.personalInfo.tagline}</span>
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        {links.map((link) => (
+          <a
+            key={link.name}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-200 hover:text-accent"
+          >
+            {link.name}
+          </a>
+        ))}
+        <span>{portfolioData.personalInfo.name} · Portfolio field notes</span>
       </div>
     </footer>
   );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Reveal } from '../../components/reveal';
 import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { useForm } from 'react-hook-form';
@@ -49,16 +49,11 @@ export default function ContactSection() {
   };
 
   return (
-    <motion.section
+    <Reveal
+      as="section"
       id="contact"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="py-16 relative mb-24 scroll-mt-[var(--header-height)]"
+      className="relative scroll-mt-[calc(var(--header-height)+2rem)]"
     >
-      {/* Node indicator */}
-      <div className="absolute -left-[41px] top-24 w-4 h-4 rounded-full border-2 border-[var(--color-accent)] bg-white hidden md:block" />
-      
       <div className="grid md:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-2xl border border-[var(--color-border-subtle)] shadow-sm">
         <div>
           <h2 className="font-display text-3xl font-bold mb-4 text-[var(--color-ink)]">Next Steps</h2>
@@ -142,6 +137,6 @@ export default function ContactSection() {
           </form>
         </div>
       </div>
-    </motion.section>
+    </Reveal>
   );
 }

@@ -10,6 +10,8 @@ export interface PersonalInfo {
   email: string;
   bio: string;
   tagline: string;
+  /** One-sentence introduction shown in the Overview hero. */
+  intro: string;
 }
 
 export interface CurrentFocus {
@@ -40,6 +42,8 @@ export interface Experience {
   role: string;
   company: string;
   period: string;
+  /** True for the role held today. */
+  current?: boolean;
   location: string;
   highlights: string[];
   technologies: string[];
@@ -103,8 +107,27 @@ export interface ArchitectureNode {
   label: string;
 }
 
+/** A verified technology-to-project relationship shown in the Overview evidence table. */
+export interface TechnicalEvidenceItem {
+  technology: string;
+  /** Matches `Project.title`. */
+  project: string;
+  note: string;
+}
+
 export interface Project {
+  /** Full title. Also the key used by AppContext.activeProject. */
   title: string;
+  /** Name shown in Overview rows and the evidence table. */
+  shortTitle: string;
+  /** Short category line shown above the project title. */
+  domain: string;
+  /** One verified, supported statement about what the project demonstrates. */
+  evidence: string;
+  /** Headline result for the Overview row, taken from the verified results in `metrics`/`longDesc`. */
+  metric?: string;
+  /** Rendered as a larger row in the Overview project list. */
+  featured?: boolean;
   desc: string;
   tech: string[];
   github: string;
@@ -128,6 +151,7 @@ export interface PortfolioData {
   content: Content;
   skills: SkillCategory[];
   technicalProfile: TechnicalProfileItem[];
+  technicalEvidence: TechnicalEvidenceItem[];
   projects: Project[];
 }
 
