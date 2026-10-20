@@ -36,11 +36,7 @@ export default function OverviewPage() {
         <Foundations education={portfolioData.education} achievements={portfolioData.achievements} />
       </section>
 
-      <div className="bg-stone">
-        <div className="shell-width section-pad">
-          <ContactSection />
-        </div>
-      </div>
+      <ContactSection />
     </div>
   );
 }

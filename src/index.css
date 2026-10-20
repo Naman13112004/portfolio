@@ -13,6 +13,7 @@
   --color-border-subtle: #D8D1C8;
   --color-accent: #C45B45;
   --color-clay: #F3E0D9;
+  --color-field-line: #A9A096; /* underline of form fields on stone */
   --color-forest: #28634F;
 
   /* Dark ink surfaces (Make evidence band) */
