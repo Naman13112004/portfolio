@@ -1,54 +1,66 @@
-import { Outlet, Link } from "react-router-dom";
+import type { MouseEvent } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "../lib/AppContext";
+import { lensNavigation, scrollToContact } from "../lib/lens-navigation";
+import type { Lens } from "../lib/lens-navigation";
 import Footer from "./footer";
+import SiteHeader from "./site-header";
 import { AnimatePresence } from "framer-motion";
 import ProjectDeepDive from "./project/ProjectDeepDive";
 import { portfolioData } from "../data/portfolio";
 
 const Layout = () => {
-  const { lensMode, setLensMode, activeProject } = useApp();
+  const { lensMode, setLensMode, switchLens, activeProject } = useApp();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
-  const activeProjectData = activeProject 
-    ? portfolioData.projects.find(p => p.title === activeProject) 
+  // Overview and Explore live at "/". Legacy routes share the header but are not lens views.
+  const isHome = pathname === "/";
+
+  const activeProjectData = activeProject
+    ? portfolioData.projects.find(p => p.title === activeProject)
     : null;
+
+  const handleLensChange = (next: Lens) => {
+    if (isHome) {
+      switchLens(next);
+    } else {
+      setLensMode(next);
+      navigate("/");
+    }
+  };
+
+  const handleBrandClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (isHome) {
+      event.preventDefault();
+      switchLens("overview");
+    } else {
+      setLensMode("overview");
+    }
+  };
+
+  const handleContact = () => {
+    if (!isHome) {
+      navigate({ pathname: "/", hash: "#contact" });
+    } else if (lensNavigation.committedLens === "overview") {
+      scrollToContact();
+    } else {
+      switchLens("overview", { scrollTo: "contact" });
+    }
+  };
 
   return (
     <div className="relative bg-[var(--color-canvas)] min-h-screen text-[var(--color-ink)] font-sans">
-      
+
       {/* Global Navigation Shell */}
-      <header className="fixed top-0 inset-x-0 h-20 px-6 md:px-12 flex items-center justify-between z-40 bg-[var(--color-canvas)]/90 backdrop-blur-sm border-b border-[var(--color-border-subtle)]">
-        <Link to="/" className="font-display font-bold text-xl tracking-tight cursor-pointer" onClick={() => setLensMode('overview')}>
-          {'<Naman />'}
-        </Link>
+      <SiteHeader
+        activeLens={isHome ? lensMode : null}
+        onLensChange={handleLensChange}
+        onBrandClick={handleBrandClick}
+        onContact={handleContact}
+      />
 
-        {/* Lens Toggle (Hidden on mobile for now) */}
-        <div className="hidden md:flex items-center bg-white rounded-full p-1 shadow-sm border border-[var(--color-border-subtle)]">
-          <button
-            onClick={() => setLensMode('overview')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              lensMode === 'overview' ? 'bg-[var(--color-canvas)] shadow-sm text-[var(--color-ink)]' : 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]'
-            }`}
-          >
-            Overview
-          </button>
-          <button
-            onClick={() => setLensMode('explore')}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              lensMode === 'explore' ? 'bg-[var(--color-canvas)] shadow-sm text-[var(--color-ink)]' : 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]'
-            }`}
-          >
-            Explore
-          </button>
-        </div>
-
-        <div className="flex items-center gap-6 text-sm font-medium">
-          {/* Legacy Resume Link */}
-          <a href="/assets/Naman Jain Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-accent)] transition-colors">Resume</a>
-          <Link to="/contact" className="hover:text-[var(--color-accent)] transition-colors">Contact</Link>
-        </div>
-      </header>
-      
-      <main className="relative z-10 min-h-screen pt-20">
+      <main className="relative z-10 min-h-screen pt-[var(--header-height)]">
         <Outlet />
       </main>
 

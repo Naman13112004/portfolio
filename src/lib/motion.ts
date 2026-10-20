@@ -94,8 +94,16 @@ export const viewSwitch: Variants = {
     opacity: 0,
     y: -6,
     scale: 0.985,
+    pointerEvents: 'none',
     transition: { duration: duration.viewOut, ease: ease.smooth },
   },
+};
+
+/** Same contract as viewSwitch with no waiting, for users who prefer reduced motion. */
+export const viewSwitchReduced: Variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0 } },
+  exit: { opacity: 0, pointerEvents: 'none', transition: { duration: 0 } },
 };
 
 /** Explore context panel. Remount it by key on selection change. */

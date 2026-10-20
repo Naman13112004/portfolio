@@ -1,21 +1,41 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import { lensNavigation } from './lens-navigation';
+import type { Lens, ScrollTarget } from './lens-navigation';
+
+interface SwitchLensOptions {
+  /** Scroll to this section after the new view has finished animating in. */
+  scrollTo?: ScrollTarget;
+}
 
 interface AppState {
-  lensMode: 'overview' | 'explore';
+  lensMode: Lens;
   activeProject: string | null;
-  setLensMode: (mode: 'overview' | 'explore') => void;
+  setLensMode: (mode: Lens) => void;
   setActiveProject: (id: string | null) => void;
+  /** Switch views, remembering the outgoing view's scroll position and restoring the incoming one's. */
+  switchLens: (mode: Lens, options?: SwitchLensOptions) => void;
 }
 
 const AppContext = createContext<AppState | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [lensMode, setLensMode] = useState<'overview' | 'explore'>('overview');
+  const [lensMode, setLensMode] = useState<Lens>('overview');
   const [activeProject, setActiveProject] = useState<string | null>(null);
 
+  const switchLens = useCallback(
+    (mode: Lens, options?: SwitchLensOptions) => {
+      if (options?.scrollTo) lensNavigation.requestScrollTo(options.scrollTo);
+      if (mode === lensMode) return;
+      lensNavigation.rememberScroll();
+      lensNavigation.requestRestore();
+      setLensMode(mode);
+    },
+    [lensMode],
+  );
+
   return (
-    <AppContext.Provider value={{ lensMode, setLensMode, activeProject, setActiveProject }}>
+    <AppContext.Provider value={{ lensMode, setLensMode, activeProject, setActiveProject, switchLens }}>
       {children}
     </AppContext.Provider>
   );

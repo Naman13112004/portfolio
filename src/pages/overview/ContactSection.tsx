@@ -49,11 +49,12 @@ export default function ContactSection() {
   };
 
   return (
-    <motion.section 
+    <motion.section
+      id="contact"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="py-16 relative mb-24"
+      className="py-16 relative mb-24 scroll-mt-[var(--header-height)]"
     >
       {/* Node indicator */}
       <div className="absolute -left-[41px] top-24 w-4 h-4 rounded-full border-2 border-[var(--color-accent)] bg-white hidden md:block" />
