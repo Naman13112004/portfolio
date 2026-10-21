@@ -1,4 +1,246 @@
 @import "tailwindcss";
 
-/* This tells Tailwind: "Activate dark mode styles when the .dark class is present" */
+@theme {
+  /* Figma Make palette. Legacy names (ink-muted, surface, border-subtle) are kept as aliases so existing components follow the new values. */
+  --color-canvas: #F4F0EB;
+  --color-paper: #FFFEFC;
+  --color-surface: #FFFEFC;
+  --color-stone: #EAE4DB;
+  --color-ink: #172033;
+  --color-slate: #627084;
+  --color-ink-muted: #627084;
+  --color-line: #D8D1C8;
+  --color-border-subtle: #D8D1C8;
+  --color-accent: #C45B45;
+  --color-clay: #F3E0D9;
+  --color-field-line: #A9A096; /* underline of form fields on stone */
+  --color-forest: #28634F;
+  --color-on-clay: #7F3B2D; /* text on clay surfaces (learning nodes) */
+
+  /* Dark ink surfaces (Make evidence band) */
+  --color-ink-line: #3A4251;
+  --color-ink-raised: #202A3D;
+  --color-on-ink-muted: #AAB2BD;
+  --color-on-ink-faint: #8993A2;
+  --color-on-ink-soft: #C2C8D0;
+  --color-accent-soft: #F1A08D;
+
+  /* Typography. font-sans resolves to Inter so wrappers using `font-sans` match the body. */
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Paper-like offset shadows: shadow-paper (10px), shadow-paper-sm (6px) */
+  --shadow-paper: 10px 10px 0 var(--color-stone);
+  --shadow-paper-sm: 6px 6px 0 var(--color-stone);
+}
+
+:root {
+  /* Layout */
+  --layout-max: 1240px;
+  --layout-pad: clamp(1.25rem, 5vw, 4.5rem);
+
+  /* Motion. Mirror these in src/lib/motion.ts. */
+  --motion-fast: 150ms;
+  --motion-small: 200ms;
+  --motion-enter: 440ms;
+  --motion-view: 400ms;
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Global header: 88px on desktop, 72px at the Make mobile breakpoint (680px) */
+  --header-height: 88px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --layout-pad: clamp(1.2rem, 4vw, 2.5rem);
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --header-height: 72px;
+  }
+}
+
+/* Page-width container used by the shell and redesigned sections */
+@utility shell-width {
+  width: min(calc(100% - 2 * var(--layout-pad)), var(--layout-max));
+  margin-inline: auto;
+}
+
+/* Vertical rhythm between Overview sections */
+@utility section-pad {
+  padding-block: clamp(5rem, 9vw, 8rem);
+
+  @media (max-width: 680px) {
+    padding-block: 70px;
+  }
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* Tailwind 4 resets buttons to the default arrow. Restore a pointing hand on controls, and mark disabled ones. */
+@layer base {
+  button:not(:disabled),
+  [role="button"],
+  [role="tab"],
+  summary,
+  select:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled,
+  select:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Keyboard focus. Kept in the base layer so component utilities (focus:outline-none, focus:ring-*) still win. */
+@layer base {
+  button, a, input, textarea, select, summary, [tabindex]:not([tabindex="-1"]) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  [tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-accent), transparent 55%);
+    outline-offset: 3px;
+  }
+}
+
+/* Explore graph entrance: nodes settle into place and edges draw in (delays are set inline). */
+@keyframes graph-node-settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes graph-edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.graph-node-enter {
+  animation: graph-node-settle 400ms var(--ease-enter) backwards;
+}
+
+.graph-edge-enter {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: graph-edge-draw 420ms var(--ease-enter) forwards;
+}
+
+/* Cursor companion (src/components/cursor-companion.tsx). Mounted only for a fine pointer without reduced motion;
+   the system cursor is never hidden. */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0;
+}
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transition: opacity var(--motion-fast);
+}
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 1px solid color-mix(in srgb, var(--color-accent), transparent 25%);
+  border-radius: 50%;
+  transition: width var(--motion-small) var(--ease-enter), height var(--motion-small) var(--ease-enter),
+    margin var(--motion-small) var(--ease-enter), opacity var(--motion-fast), border-color var(--motion-small);
+}
+.cursor-dot.is-visible,
+.cursor-ring.is-visible {
+  opacity: 1;
+}
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+.cursor-ring.is-active {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-color: var(--color-accent);
+}
+.cursor-ring.is-graph {
+  width: 29px;
+  height: 29px;
+  margin: -14.5px 0 0 -14.5px;
+  border-style: dashed;
+}
+.cursor-ring span {
+  position: absolute;
+  left: 39px;
+  padding: 3px 7px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font: 600 10px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--motion-fast), transform var(--motion-fast);
+}
+.cursor-ring span.has-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.cursor-ring.flip span {
+  left: auto;
+  right: 39px;
+}
+
 @variant dark (&:where(.dark, .dark *));
+
+/* Reduced motion. Framer Motion is handled by <MotionConfig reducedMotion="user"> in main.tsx. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

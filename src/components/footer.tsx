@@ -1,16 +1,24 @@
+import { portfolioData } from '../data/portfolio';
+
+const links = portfolioData.socials.filter((social) => ['GitHub', 'LinkedIn', 'Twitter (X)'].includes(social.name));
+
 const Footer = () => {
   return (
-    <footer className="sticky bottom-0 z-2 h-100 w-full bg-white dark:bg-black flex items-center justify-center text-white">
-      <div className="text-center">
-        <h2 className="text-[10vw] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-gray-200 to-gray-600">
-          NAMAN JAIN
-        </h2>
-        <p className="text-xl md:text-2xl mt-4 text-blue-400 font-mono tracking-widest">
-          FULL STACK DEVELOPER
-        </p>
-        <p className="mt-8 text-gray-500 text-sm">
-          © {new Date().getFullYear()} TechyUDP. Built with React & Tailwind.
-        </p>
+    <footer className="shell-width flex flex-wrap items-center justify-between gap-x-8 gap-y-2 py-7 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-slate max-[680px]:grid">
+      <span>{portfolioData.personalInfo.tagline}</span>
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        {links.map((link) => (
+          <a
+            key={link.name}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-200 hover:text-accent"
+          >
+            {link.name}
+          </a>
+        ))}
+        <span>{portfolioData.personalInfo.name} · Portfolio field notes</span>
       </div>
     </footer>
   );
