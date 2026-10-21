@@ -6,8 +6,7 @@ import { lensNavigation } from '../lib/lens-navigation';
 import type { Lens } from '../lib/lens-navigation';
 import { viewSwitch, viewSwitchReduced } from '../lib/motion';
 import OverviewPage from './overview';
-// TEMPORARY: swap for the production Explore page when it exists.
-import ExplorePlaceholder from './explore/ExplorePlaceholder';
+import ExplorePage from './explore/ExplorePage';
 
 /** Reports which view is on screen and restores its scroll position as it mounts. */
 function LensEntry({ lens, children }: { lens: Lens; children: ReactNode }) {
@@ -48,7 +47,7 @@ export default function LensView() {
           if (definition === 'animate') lensNavigation.settle();
         }}
       >
-        <LensEntry lens={lensMode}>{lensMode === 'overview' ? <OverviewPage /> : <ExplorePlaceholder />}</LensEntry>
+        <LensEntry lens={lensMode}>{lensMode === 'overview' ? <OverviewPage /> : <ExplorePage />}</LensEntry>
       </motion.div>
     </AnimatePresence>
   );

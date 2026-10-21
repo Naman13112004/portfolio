@@ -155,19 +155,55 @@ export interface PortfolioData {
   projects: Project[];
 }
 
-// Graph specific types
-export interface GraphNode {
-  id: string;
-  type: 'identity' | 'project' | 'tech' | 'exploring';
-  label: string;
+// Explore graph contracts. The graph itself is derived from PortfolioData in src/data/explore-data.ts.
+
+export type GraphNodeKind = 'identity' | 'project' | 'technology' | 'learning';
+
+interface GraphNodeBase {
+  /** Stable, deterministic identifier, e.g. "tech:redis". Never an array index. */
+  readonly id: string;
+  /** Display text, in the spelling used by the portfolio data. */
+  readonly label: string;
 }
 
+/** Naman Jain. */
+export interface IdentityNode extends GraphNodeBase {
+  readonly kind: 'identity';
+}
+
+/** A portfolio project. `projectTitle` is `Project.title`, the key used by AppContext.activeProject. */
+export interface ProjectNode extends GraphNodeBase {
+  readonly kind: 'project';
+  readonly projectTitle: string;
+}
+
+/** A technology listed in at least one project's `tech` array. */
+export interface TechnologyNode extends GraphNodeBase {
+  readonly kind: 'technology';
+  /** Also part of the current learning direction. Its project relationships still stand. */
+  readonly currentFocus: boolean;
+}
+
+/** A current learning topic that no project lists as a technology. It has no project relationships. */
+export interface LearningNode extends GraphNodeBase {
+  readonly kind: 'learning';
+}
+
+export type GraphNode = IdentityNode | ProjectNode | TechnologyNode | LearningNode;
+
+export type GraphEdgeKind = 'identity-project' | 'project-technology';
+
+/** An undirected relationship. `source` and `target` follow the order in the name of `kind`. */
 export interface GraphEdge {
-  source: string;
-  target: string;
+  /** `${source}->${target}` */
+  readonly id: string;
+  readonly source: string;
+  readonly target: string;
+  readonly kind: GraphEdgeKind;
 }
 
-export interface GraphData {
-  nodes: GraphNode[];
-  edges: GraphEdge[];
+/** Canonical application graph. Read-only: a layout engine must work on copies. */
+export interface ExploreGraph {
+  readonly nodes: readonly GraphNode[];
+  readonly edges: readonly GraphEdge[];
 }

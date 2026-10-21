@@ -15,6 +15,7 @@
   --color-clay: #F3E0D9;
   --color-field-line: #A9A096; /* underline of form fields on stone */
   --color-forest: #28634F;
+  --color-on-clay: #7F3B2D; /* text on clay surfaces (learning nodes) */
 
   /* Dark ink surfaces (Make evidence band) */
   --color-ink-line: #3A4251;
@@ -115,6 +116,34 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Explore graph entrance: nodes settle into place and edges draw in (delays are set inline). */
+@keyframes graph-node-settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes graph-edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.graph-node-enter {
+  animation: graph-node-settle 400ms var(--ease-enter) backwards;
+}
+
+.graph-edge-enter {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: graph-edge-draw 420ms var(--ease-enter) forwards;
+}
+
 @variant dark (&:where(.dark, .dark *));
 
 /* Reduced motion. Framer Motion is handled by <MotionConfig reducedMotion="user"> in main.tsx. */
@@ -123,6 +152,7 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
   }
 }
