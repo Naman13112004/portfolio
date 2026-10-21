@@ -184,6 +184,7 @@ export default function ExploreGraph({ selection, onSelect, className }: Explore
                 <button
                   key={node.id}
                   type="button"
+                  data-graph-node=""
                   aria-pressed={selected}
                   aria-label={describeNode(node)}
                   // Technologies are reached through their projects (and the context panel) to keep the tab order short.

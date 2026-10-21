@@ -149,7 +149,7 @@ export default function ProjectDeepDive({ project }: { project: Project }) {
             type="button"
             onClick={() => setActiveProject(null)}
             aria-label="Close project case study"
-            className="group -ml-2 inline-flex min-h-11 items-center gap-2.5 px-2 text-sm font-semibold text-ink"
+            className="group -ml-2 inline-flex min-h-11 items-center gap-2.5 px-2 text-sm font-semibold text-ink transition-colors duration-200 hover:text-accent"
           >
             <ArrowLeft
               size={16}

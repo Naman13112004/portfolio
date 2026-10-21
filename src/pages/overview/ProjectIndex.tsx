@@ -60,6 +60,7 @@ export default function ProjectIndex({ projects }: { projects: Project[] }) {
                 type="button"
                 onClick={() => setActiveProject(project.title)}
                 aria-label={`Read case study: ${project.shortTitle}`}
+                data-cursor="View case study"
                 className="group/cta mt-[18px] inline-flex items-center gap-2 border-b border-current py-1 text-[13px] font-semibold transition-transform duration-150 active:scale-[0.97]"
               >
                 Read case study

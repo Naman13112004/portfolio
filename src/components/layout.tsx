@@ -7,6 +7,7 @@ import Footer from "./footer";
 import SiteHeader from "./site-header";
 import { AnimatePresence } from "framer-motion";
 import ProjectDeepDive from "./project/ProjectDeepDive";
+import CursorCompanion from "./cursor-companion";
 import { portfolioData } from "../data/portfolio";
 
 const Layout = () => {
@@ -51,6 +52,8 @@ const Layout = () => {
 
   return (
     <div className="relative bg-[var(--color-canvas)] min-h-screen text-[var(--color-ink)] font-sans">
+
+      <CursorCompanion />
 
       {/* Global Navigation Shell */}
       <SiteHeader

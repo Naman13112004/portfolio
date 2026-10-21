@@ -42,6 +42,7 @@ export default function SiteHeader({ activeLens, onLensChange, onBrandClick, onC
 
         <nav
           aria-label="Portfolio view"
+          data-cursor="Switch view"
           className="flex rounded-[3px] border border-line bg-paper p-[3px] transition-[border-color,box-shadow] duration-200 hover:border-ink hover:shadow-[0_2px_0_var(--color-stone)] focus-within:border-ink focus-within:shadow-[0_2px_0_var(--color-stone)] max-[680px]:justify-self-center"
         >
           {LENSES.map(({ id, label }) => {
@@ -69,6 +70,7 @@ export default function SiteHeader({ activeLens, onLensChange, onBrandClick, onC
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Resume (PDF, opens in a new tab)"
+            data-cursor="Resume"
             className={clsx(action, 'border-ink bg-transparent hover:bg-ink hover:text-white max-[680px]:hidden')}
           >
             Resume
@@ -77,6 +79,7 @@ export default function SiteHeader({ activeLens, onLensChange, onBrandClick, onC
           <button
             type="button"
             onClick={onContact}
+            data-cursor="Contact"
             className={clsx(action, 'border-accent bg-accent text-white hover:border-ink hover:bg-ink')}
           >
             Contact
